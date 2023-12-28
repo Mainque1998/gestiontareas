@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { TareasService} from './tareas.service';
 import { CreateTareaDto } from './dto/create-tarea.dto';
 import { UpdateTareaDto } from './dto/update-tarea.dto';
+import { ActiveUser } from 'src/common/decorators/active-user.decorator';
+import { ActiveUserInterface } from 'src/common/interfaces/active-user.interface';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('tareas')
 export class TareasController {
@@ -9,22 +12,39 @@ export class TareasController {
     
   
     @Get()
-    findAll() {
-      return this.tareaService.getAllTareas()
+    @UseGuards(AuthGuard)
+    findAll(
+      @ActiveUser() user: ActiveUserInterface
+    ) {
+      return this.tareaService.getAllTareasByUser(user)
     }
   
     @Post()
-    create(@Body() t: CreateTareaDto) {
-      return this.tareaService.createTarea(t);
+    @UseGuards(AuthGuard)
+    create(
+      @Body() t: CreateTareaDto,
+      @ActiveUser() user: ActiveUserInterface
+    ) {
+      console.log(user)
+      return this.tareaService.createTarea(t, user);
     }
   
     @Put(':id')
-    update(@Param('id', ParseIntPipe) id: number, @Body() t: UpdateTareaDto) {
-      return this.tareaService.updateTarea(id, t);
+    @UseGuards(AuthGuard)
+    update(
+      @Param('id', ParseIntPipe) id: number,
+      @Body() t: UpdateTareaDto,
+      @ActiveUser() user: ActiveUserInterface
+    ) {
+      return this.tareaService.updateTarea(id, t, user);
     }
   
     @Delete(':id')
-    delete(@Param('id', ParseIntPipe) id: number) {
-      return this.tareaService.deleteTarea(id);
+    @UseGuards(AuthGuard)
+    delete(
+      @Param('id', ParseIntPipe) id: number,
+      @ActiveUser() user: ActiveUserInterface
+    ) {
+      return this.tareaService.deleteTarea(id, user);
     }
 }

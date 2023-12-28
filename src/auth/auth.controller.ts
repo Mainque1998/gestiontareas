@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
+import { ActiveUser } from 'src/common/decorators/active-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -29,8 +30,8 @@ export class AuthController {
     @Get('profile')
     @UseGuards(AuthGuard)
     profile(
-        @Request() req
+        @ActiveUser() user
     ){
-        return req.user;
+        return user.email;
     }
 }

@@ -1,4 +1,6 @@
-import { IsOptional, IsDateString, IsString} from 'class-validator';
+import { IsDateString, IsString, IsEnum} from 'class-validator';
+import { Estado } from 'src/common/enums/estado.enum';
+import { Prioridad } from 'src/common/enums/prioridad.enum';
   
   export class CreateTareaDto {
     @IsString()
@@ -7,11 +9,11 @@ import { IsOptional, IsDateString, IsString} from 'class-validator';
     @IsString()
     descripcion: string;
   
-    @IsString()
-    prioridad: string;
+    @IsEnum(Prioridad)
+    prioridad: Prioridad;
   
-    @IsString()
-    estado: string;
+    @IsEnum(Estado)
+    estado: Estado;
   
     @IsDateString()
     vencimiento: Date;

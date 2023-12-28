@@ -1,4 +1,6 @@
-import { IsOptional, IsDateString, IsString} from 'class-validator';
+import { IsOptional, IsDateString, IsString, IsEnum} from 'class-validator';
+import { Estado } from 'src/common/enums/estado.enum';
+import { Prioridad } from 'src/common/enums/prioridad.enum';
   
   export class UpdateTareaDto {
     @IsOptional()
@@ -10,12 +12,12 @@ import { IsOptional, IsDateString, IsString} from 'class-validator';
     descripcion: string;
   
     @IsOptional()
-    @IsString()
-    prioridad: string;
+    @IsEnum(Prioridad)
+    prioridad: Prioridad;
   
     @IsOptional()
-    @IsString()
-    estado: string;
+    @IsEnum(Estado)
+    estado: Estado;
   
     @IsOptional()
     @IsDateString()
