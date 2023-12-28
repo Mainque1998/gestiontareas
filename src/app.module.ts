@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TareasModule } from './tareas/tareas.module';
 import { Tarea } from './tareas/entities/tarea.entity';
+import { AuthModule } from './auth/auth.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -12,12 +14,12 @@ import { Tarea } from './tareas/entities/tarea.entity';
       username: 'postgres',
       password: 'admin',
       database: 'GestorTareas',
-      entities: [Tarea],
+      entities: [Tarea, User],
       logging: true,
       synchronize: true
     }),
-    TypeOrmModule.forFeature([Tarea]),
-    TareasModule],
+    TareasModule,
+    AuthModule],
   exports: [TypeOrmModule],
   controllers: [],
   providers: [],
