@@ -16,7 +16,7 @@ export class TareasController {
     findAll(
       @ActiveUser() user: ActiveUserInterface
     ) {
-      return this.tareaService.getAllTareasByUser(user)
+      return this.tareaService.getAllTareasByUserInOrder(user);
     }
   
     @Post()
@@ -39,6 +39,14 @@ export class TareasController {
       return this.tareaService.updateTarea(id, t, user);
     }
   
+    @Put()
+    @UseGuards(AuthGuard)
+    updatePrioridadTareas(
+      @ActiveUser() user: ActiveUserInterface
+    ) {
+      return this.tareaService.updateTareaPrioridadByVencimiento(user);
+    }
+
     @Delete(':id')
     @UseGuards(AuthGuard)
     delete(
