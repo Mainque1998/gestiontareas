@@ -27,15 +27,15 @@ export class AuthService {
     async login(loginDto: LoginDto){
         const user = await this.userService.findOneByEmail(loginDto.email);
         if(!user)
-            throw new UnauthorizedException('Email is wrong');
+            throw new UnauthorizedException('There is not user with this email');
 
         if (!await bcrypt.compare(loginDto.password, user.password))
-            throw new UnauthorizedException('Password is wrong');
+            throw new UnauthorizedException('Incorrect password');
 
         const payload = { email: user.email};
 
         const token = await this.jwtService.signAsync(payload);
 
-        return token;
+        return {"token":token};
     }
 }
