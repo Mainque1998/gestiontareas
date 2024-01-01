@@ -17,8 +17,6 @@ export class AuthService {
     let path = this.url + "/login";
     return this.http.post<ResponseI>(path, form).pipe(
       catchError((error: HttpErrorResponse) => {
-        //console.error('Ocurrió un error en la solicitud:', error.error.message);
-        // Propaga el error para que pueda ser manejado por el componente que realiza la llamada
         return throwError(error);
       })
     );
