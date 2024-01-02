@@ -4,19 +4,21 @@
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
-    <!-- Tabs Titles -->
+    
     <br><h3>Gestión de tareas</h3><br>
-    <!-- Login Form -->
+    
     <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
       <input type="text" id="email" class="fadeIn second" placeholder="email" formControlName="email">
       <input type="password" id="password" class="fadeIn third" placeholder="password" formControlName="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="submit" class="fadeIn fourth" value="Ingresar">
     </form>
 
-    <!-- Remind Passowrd -->
+
     <div id="alert alert-danger" *ngIf="errorStatus">
       <p>{{ errorMsg }}</p>
     </div>
 
+
   </div>
+  <button type="button" class="btn btn-link" (click)="newUser()">Nuevo usuario</button>
 </div>

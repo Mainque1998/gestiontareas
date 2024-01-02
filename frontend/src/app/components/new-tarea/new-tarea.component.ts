@@ -16,8 +16,8 @@ export class NewTareaComponent implements OnInit{
     id: new FormControl('', Validators.required),
     nombre: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
-    prioridad: new FormControl('', Validators.required),
-    estado: new FormControl('', Validators.required),
+    prioridad: new FormControl(null, Validators.required),
+    estado: new FormControl(null, Validators.required),
     vencimiento: new FormControl('', Validators.required)
   });
 

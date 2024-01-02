@@ -15,11 +15,20 @@
         <div class="form-group row">
             <div class="col">
                 <label for="exampleFormControlInput1">Prioridad</label>
-                <input type="text" class="form-control"  placeholder="Prioridad" formControlName="prioridad">     
+                <select id="prioridad" class="form-control" formControlName="prioridad">
+                    <option value="Alta" class="form-control">Alta</option>
+                    <option value="Media" class="form-control">Media</option>
+                    <option value="Baja" class="form-control">Baja</option>
+                    <option value="Nula" class="form-control">-</option>
+                </select>   
             </div>
             <div class="col">
                 <label for="exampleFormControlInput1">Estado</label>
-                <input type="text" class="form-control"  placeholder="Estado" formControlName="estado">     
+                <select id="estado" class="form-control" formControlName="estado">
+                    <option value="To do" >To do</option>
+                    <option value="In progress" >In progress</option>
+                    <option value="Done" >Done</option>
+                </select>    
             </div>
             <div class="col">
                 <label for="exampleFormControlInput1">Vencimiento</label>

@@ -27,7 +27,7 @@ export class EditTareaComponent implements OnInit{
     private router: Router,
     private tareaService: TareaService
   ){}
-
+  
   ngOnInit(): void {
     let tareaId = this.activeRoute.snapshot.paramMap.get('id');
     if( tareaId != null){
