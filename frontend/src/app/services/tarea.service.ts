@@ -48,4 +48,15 @@ export class TareaService {
     return this.http.delete(path);
   }
 
+  createTarea(form: TareaEditI){
+    let path = this.url;
+    let t = {
+      nombre: form.nombre,
+      descripcion: form.descripcion,
+      prioridad: form.prioridad,
+      estado: form.estado,
+      vencimiento: form.vencimiento
+    };
+    return this.http.post<TareaI>(path, t);
+  }
 }
