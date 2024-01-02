@@ -33,4 +33,17 @@ export class TareasComponent implements OnInit{
   selectTarea(id: number): void {
     this.router.navigate(['edit-tarea', id]);
   }
+  
+  nextToExpire(vencimiento: Date): boolean {
+    const unaSemanaEnMilisegundos = 7 * 24 * 60 * 60 * 1000;
+    
+    const fechaVencimientoDate = typeof vencimiento === 'string' ? new Date(vencimiento) : vencimiento;
+    if (!(fechaVencimientoDate instanceof Date) || isNaN(fechaVencimientoDate.getTime())) {
+      return false; // No es una fecha válida
+    }
+  
+    const fechaActual = new Date();
+    const diferencia = fechaVencimientoDate.getTime() - fechaActual.getTime();
+    return diferencia <= unaSemanaEnMilisegundos;
+  }
 }

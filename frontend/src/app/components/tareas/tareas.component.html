@@ -23,7 +23,7 @@
             <td>{{t.descripcion}}</td>
             <td>{{t.prioridad}}</td>
             <td>{{t.estado}}</td>
-            <td><time>{{ t.vencimiento | date: 'dd/MM/yyyy' }}</time></td>
+            <td [class.highlight]="nextToExpire(t.vencimiento)"><time>{{ t.vencimiento | date: 'dd/MM/yyyy' }}</time></td>
           </tr>
           <tr>
         </tbody>
