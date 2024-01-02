@@ -1,1 +1,35 @@
-<p>edit-tarea works!</p>
+<br><br>
+
+<div class="container">
+
+    <form [formGroup]="editForm" (ngSubmit)="update(editForm.value)">
+        <div class="form-group">
+                <label for="exampleFormControlInput1">Nombre</label>
+                <input type="text" class="form-control"  placeholder="Nombre" formControlName="nombre">
+        </div>
+        <div class="form-group">
+                <label for="exampleFormControlInput1">Descripción</label>
+                <input type="text" class="form-control"  placeholder="Descripción" formControlName="descripcion">
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <label for="exampleFormControlInput1">Prioridad</label>
+                <input type="text" class="form-control"  placeholder="Prioridad" formControlName="prioridad">     
+            </div>
+            <div class="col">
+                <label for="exampleFormControlInput1">Estado</label>
+                <input type="text" class="form-control"  placeholder="Estado" formControlName="estado">     
+            </div>
+            <div class="col">
+                <label for="exampleFormControlInput1">Vencimiento</label>
+                <input type="date" class="form-control"  placeholder="Vencimiento" formControlName="vencimiento">     
+            </div>
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-danger" (click)="delete(editForm.value)">Eliminar</button>
+        <button type="button" class="btn btn-dark" (click)="cancel()">Cancelar</button>
+            
+</form>
+
+</div>

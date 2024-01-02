@@ -18,6 +18,10 @@ export class TareasService {
         private tareasRepository: Repository<Tarea>,
     ){}
     
+    getTareaById(id: number, u: ActiveUserInterface){
+        return this.tareasRepository.findOneBy({id: id});  
+    }
+    
     getAllTareas(){
         return this.tareasRepository.find();    
     }
@@ -91,7 +95,7 @@ export class TareasService {
             })
             .execute();
 
-        return true;
+        return await this.getAllTareasByUserInOrder(u);
     }
 
     async deleteTarea(id: number, u: ActiveUserInterface){

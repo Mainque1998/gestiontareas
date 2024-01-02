@@ -1,26 +1,32 @@
 <br>
 <div class="container">
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
+
+    <h3>¡Bienvenido al gestor de tareas!</h3>
+
+    <button type="button" class="btn btn-primary" (click)="newTarea()">Crear tarea</button>
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
+            <th scope="col">Descripcion</th>
             <th scope="col">Prioridad</th>
             <th scope="col">Estado</th>
             <th scope="col">Vencimiento</th>
-        </tr>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let t of tareas" >
+          <tr *ngFor="let t of tareas" (click)="selectTarea(t.id)">
             <th scope="row">{{t.id}}</th>
             <td>{{t.nombre}}</td>
             <td>{{t.descripcion}}</td>
             <td>{{t.prioridad}}</td>
             <td>{{t.estado}}</td>
             <td>{{t.vencimiento}}</td>
-        </tr>
+          </tr>
+          <tr>
         </tbody>
-    </table>
+      </table>
 </div>
   

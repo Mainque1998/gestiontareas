@@ -18,10 +18,19 @@ export class TareasComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    //antes habría que llamar al update de prioridades
-    this.tareaService.getAllTareasByUser().subscribe( data =>{
+    console.log("iniciando tareas");
+
+    this.tareaService.updateTareasPrioridad().subscribe( data =>{
       this.tareas = data;
       console.log(this.tareas);
     });
+  }
+
+  newTarea(): void {
+    this.router.navigate(['new-tarea']);
+  }
+
+  selectTarea(id: number): void {
+    this.router.navigate(['edit-tarea', id]);
   }
 }

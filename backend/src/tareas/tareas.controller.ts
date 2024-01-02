@@ -11,12 +11,30 @@ export class TareasController {
     constructor(private tareaService: TareasService) {}
     
   
+    /*
     @Get()
     @UseGuards(AuthGuard)
     findAll(
       @ActiveUser() user: ActiveUserInterface
     ) {
       return this.tareaService.getAllTareasByUserInOrder(user);
+    }*/
+  
+    @Get()
+    @UseGuards(AuthGuard)
+    updatePrioridadTareas(
+      @ActiveUser() user: ActiveUserInterface
+    ) {
+      return this.tareaService.updateTareaPrioridadByVencimiento(user);
+    }
+  
+    @Get(':id')
+    @UseGuards(AuthGuard)
+    findOneById(
+      @Param('id', ParseIntPipe) id: number,
+      @ActiveUser() user: ActiveUserInterface
+    ) {
+      return this.tareaService.getTareaById(id, user)
     }
   
     @Post()
@@ -37,14 +55,6 @@ export class TareasController {
       @ActiveUser() user: ActiveUserInterface
     ) {
       return this.tareaService.updateTarea(id, t, user);
-    }
-  
-    @Put()
-    @UseGuards(AuthGuard)
-    updatePrioridadTareas(
-      @ActiveUser() user: ActiveUserInterface
-    ) {
-      return this.tareaService.updateTareaPrioridadByVencimiento(user);
     }
 
     @Delete(':id')

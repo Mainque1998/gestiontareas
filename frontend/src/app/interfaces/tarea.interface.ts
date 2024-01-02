@@ -1,9 +1,9 @@
 export interface TareaI {
-    id: string;
+    id: number;
     nombre: string;
     descripcion: string;
     prioridad: string;
     estado: string;
-    vencimiento: string;
+    vencimiento: Date;
     //emailUsuario: string;
 }
