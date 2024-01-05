@@ -17,7 +17,7 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule, //¿?
+    FormsModule,
     HttpClientModule,
   ],
   providers: [interceptorProvider],
