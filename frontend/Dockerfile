@@ -2,7 +2,7 @@
 FROM node:19 AS builder
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/frontend
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy the built Angular app to the nginx public directory
-COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
+COPY --from=builder /usr/src/app/frontend/dist /usr/share/nginx/html
 
 # Expose the port the app runs on
 EXPOSE 4200
